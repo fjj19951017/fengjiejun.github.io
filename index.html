@@ -42,7 +42,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="null" class="js-avatar">
+			<img src="http://img1.ph.126.net/JSOCmt_QO4uMTK1z992fxg==/6632090311515677572.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Jun</a></h1>
@@ -100,7 +100,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="null" class="js-avatar">
+				<img src="http://img1.ph.126.net/JSOCmt_QO4uMTK1z992fxg==/6632090311515677572.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Jun</h1>
@@ -151,35 +151,65 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-linux下使用git向github发送项目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/05/hello-world/">Hello World</a>
+      <a class="article-title" href="/2017/04/06/linux下使用git向github发送项目/">使用git向github发送项目（linux环境）</a>
     </h1>
   
 
         
-        <a href="/2017/04/05/hello-world/" class="archive-article-date">
-  	<time datetime="2017-04-05T09:39:28.910Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
+        <a href="/2017/04/06/linux下使用git向github发送项目/" class="archive-article-date">
+  	<time datetime="2017-04-06T13:20:14.385Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><ol>
+<li>注册</li>
+<li>new一个repository</li>
+</ol>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>如果有npm</p>
+<pre><code>npm install git    
+</code></pre><p>没有就用apt-get，或者去官网下tar包解压安装，安装完直接在终端输命令。</p>
+<h3 id="生成ssh-key"><a href="#生成ssh-key" class="headerlink" title="生成ssh key"></a>生成ssh key</h3><p>先用如下命令检查下是否有ssh key，一般第一次用是没有的：</p>
+<pre><code>cd ~/.ssh
+</code></pre><p>如果提示：No such files or directory，说明你是第一次用git。</p>
+<p>生成ssh key用以下命令：</p>
+<pre><code>ssh-keygen -t rsa -C “邮箱地址”
+</code></pre><p>提示选择生成目录直接回车。</p>
+<p>然后系统会要你输入密码，在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。</p>
+<p>生成的ssh key在root文件夹里，下面我用图形化操作的方式来查看，不过打开后root后是看不到的，因为被隐藏了。</p>
+<p>命令行输入</p>
+<pre><code>nautilus
+</code></pre><p>会弹出一个窗口，用这个窗口来进行图形化操作有root权限。打开root文件夹，会发现会有一条工具栏，正常打开文件管理器是没有的</p>
+<p>点击：查看-显示隐藏文件，就会看到生成的.ssh文件夹</p>
+<p>打开.ssh文件夹里的id_rsa.pub，复制里面的所有内容</p>
+<p>然后打开github</p>
+<p>点击：右上角头像-Settings-SSH and GPG keys-new SSH key，把复制的东西粘贴进去，这样就完成了ssh的设置</p>
+<h3 id="使用git发送代码"><a href="#使用git发送代码" class="headerlink" title="使用git发送代码"></a>使用git发送代码</h3><p>cd到本地项目目录，输入：</p>
+<pre><code>git init
+</code></pre><p>这样就初始化了一个临时存储区，然后输入：</p>
+<pre><code>git add .    
+</code></pre><p>add表示将文件加入刚刚新建的临时保存区，”.”表示添加本目录下的所有文件，如果你要发送个别文件，把”.”改成要发送的文件名</p>
+<p>继续，输入：</p>
+<pre><code>git commit -m “注释”
+</code></pre><p>注释就是本次提交的说明，用英文写</p>
+<p>继续，输入：</p>
+<pre><code>git remote add origin https://github.com/userName/projectName.git    
+</code></pre><p>此命令表示在创建一个远程仓库在本地的引用，个人理解为本地项目和github之间的一个中转站。该中转站的名字为“origin“，可以随意改，只是不能和已有的重复，”userName“和”projectName“分别是你在github的用户名和你在github上的仓库名，其余的不用改<br>最后，输入：</p>
+<pre><code>git push origin master    
+</code></pre><p>将这个中转站“origin”里的文件发送到你指定的仓库中，”master“表示发送到主支而不是分支</p>
+<p>这里如果遇到一个问题，提示”更新被拒绝，因为远程仓库包含您本次尚不存在的提交。这通常是由于另外一个仓库已向该引用进行了推送……“</p>
+<p>使用如下命令：</p>
+<pre><code>git push -u origin +mater
+</code></pre><p>具体原因不详，还没仔细思考过。</p>
 
       
 
@@ -192,7 +222,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/05/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/04/06/linux下使用git向github发送项目/">展开全文 >></a>
         </p>
       
 
